@@ -1,19 +1,17 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "항해 14기 weekOne_Sequelize",
+    "title": "항해 14기 weekOne",
     "description": "오성인",
     "version": "1.0.0"
   },
   "host": "localhost:3000",
   "basePath": "/",
-  "schemes": [
-    "http"
-  ],
+  "schemes": ["http"],
   "paths": {
     "/signup": {
       "post": {
-        "description": "",
+        "description": "회원 가입 api",
         "parameters": [
           {
             "name": "body",
@@ -22,13 +20,13 @@
               "type": "object",
               "properties": {
                 "nickname": {
-                  "example": "any"
+                  "example": "nickname"
                 },
                 "password": {
-                  "example": "any"
+                  "example": "password"
                 },
                 "confirm": {
-                  "example": "any"
+                  "example": "password confirm"
                 }
               }
             }
@@ -46,7 +44,7 @@
     },
     "/login": {
       "post": {
-        "description": "",
+        "description": "로그인 api",
         "parameters": [
           {
             "name": "body",
@@ -55,10 +53,10 @@
               "type": "object",
               "properties": {
                 "nickname": {
-                  "example": "any"
+                  "example": "nickname"
                 },
                 "password": {
-                  "example": "any"
+                  "example": "password"
                 }
               }
             }
@@ -74,23 +72,9 @@
         }
       }
     },
-    "/posts/like/": {
-      "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        }
-      }
-    },
     "/posts/": {
       "post": {
-        "description": "",
+        "description": "post 생성 api",
         "parameters": [
           {
             "name": "body",
@@ -99,10 +83,10 @@
               "type": "object",
               "properties": {
                 "title": {
-                  "example": "any"
+                  "example": "제목"
                 },
                 "content": {
-                  "example": "any"
+                  "example": "내용"
                 }
               }
             }
@@ -121,7 +105,7 @@
         }
       },
       "get": {
-        "description": "",
+        "description": "post 전체 조회 api",
         "parameters": [],
         "responses": {
           "200": {
@@ -132,7 +116,7 @@
     },
     "/posts/{_postId}": {
       "get": {
-        "description": "",
+        "description": "post 상세 조회 api",
         "parameters": [
           {
             "name": "_postId",
@@ -148,7 +132,7 @@
         }
       },
       "put": {
-        "description": "",
+        "description": "post 수정 api",
         "parameters": [
           {
             "name": "_postId",
@@ -163,10 +147,10 @@
               "type": "object",
               "properties": {
                 "title": {
-                  "example": "any"
+                  "example": "제목"
                 },
                 "content": {
-                  "example": "any"
+                  "example": "내용"
                 }
               }
             }
@@ -188,7 +172,7 @@
         }
       },
       "delete": {
-        "description": "",
+        "description": "post 삭제 api",
         "parameters": [
           {
             "name": "_postId",
@@ -210,36 +194,12 @@
         }
       }
     },
-    "/posts/{postId}/like": {
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "postId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
-    "/posts/{postId}/comments": {
+    "/posts/{_postId}/comments": {
       "post": {
-        "description": "",
+        "description": "post 하위의 comment 생성 api",
         "parameters": [
           {
-            "name": "postId",
+            "name": "_postId",
             "in": "path",
             "required": true,
             "type": "string"
@@ -250,33 +210,33 @@
             "schema": {
               "type": "object",
               "properties": {
-                "comment": {
+                "length": {
                   "example": "any"
+                },
+                "comment": {
+                  "example": "내용"
                 }
               }
             }
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created"
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "403": {
             "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "412": {
-            "description": "Precondition Failed"
           }
         }
       },
       "get": {
-        "description": "",
+        "description": "post 하위의 comment 조회 api",
         "parameters": [
           {
-            "name": "postId",
+            "name": "_postId",
             "in": "path",
             "required": true,
             "type": "string"
@@ -292,18 +252,18 @@
         }
       }
     },
-    "/posts/{postId}/comments/{commentId}": {
+    "/posts/{_postId}/comments/{_commentId}": {
       "put": {
-        "description": "",
+        "description": "post 하위의 comment 수정 api",
         "parameters": [
           {
-            "name": "postId",
+            "name": "_postId",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
-            "name": "commentId",
+            "name": "_commentId",
             "in": "path",
             "required": true,
             "type": "string"
@@ -315,7 +275,7 @@
               "type": "object",
               "properties": {
                 "comment": {
-                  "example": "any"
+                  "example": "내용"
                 }
               }
             }
@@ -340,16 +300,16 @@
         }
       },
       "delete": {
-        "description": "",
+        "description": "post 하위의 comment 삭제 api",
         "parameters": [
           {
-            "name": "postId",
+            "name": "_postId",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
-            "name": "commentId",
+            "name": "_commentId",
             "in": "path",
             "required": true,
             "type": "string"
@@ -367,9 +327,6 @@
           },
           "404": {
             "description": "Not Found"
-          },
-          "412": {
-            "description": "Precondition Failed"
           }
         }
       }
